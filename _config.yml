@@ -1,0 +1,5 @@
+title: Mi Blog Increíble
+description: Un blog hecho con Jekyll y GitHub Pages.
+theme: minima  
+url: "https://davidarenasr.github.io"  
+baseurl: "/my-blog"  # Solo si tu repo NO se llama "usuario.github.io"
