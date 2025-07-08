@@ -7,8 +7,13 @@
 </head>
 <body>
   <header>
-    <h1><a href="/">Mi Blog Personal</a></h1>
-  </header>
+    <h1><a href="/">Ciencia, cocina y Tecnología</a></h1>
+    <nav>
+        <a href="{{ '/' | relative_url }}">Inicio</a>
+        <a href="{{ '/about.html' | relative_url }}">Sobre mí</a>
+        <a href="{{ '/contact.html' | relative_url }}">Contacto</a>
+    </nav>  
+</header>
 
   <main>
     {{ content }}
@@ -19,3 +24,4 @@
   </footer>
 </body>
 </html>
+
