@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Headers para evitar caché -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
   <title>David Arenas – Portafolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -13,9 +18,9 @@
     }
 
     body {
-      background: linear-gradient(135deg, #0f0c29, #302b63, #000000);
+      background: #000;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #fff;
+      color: #000;
       overflow: hidden;
       min-height: 100vh;
       display: flex;
@@ -24,54 +29,54 @@
       position: relative;
     }
 
-    /* Fondo de partículas */
-    .particles {
+    .stars {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: 0;
+      background: radial-gradient(ellipse at center, #0a0e2a 0%, #000000 100%);
     }
 
-    .particle {
+    .star {
       position: absolute;
+      background-color: #fff;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      animation: twinkle var(--duration) infinite ease-in-out;
     }
 
-    /* Chorro de pintura */
-    #paint-splash {
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    #ink-scribble {
       position: fixed;
       top: 50%;
       left: 50%;
-      width: 20px;
-      height: 200px;
-      background: linear-gradient(to top, #ff4136, #ff8c00);
-      transform: translate(-50%, -50%) scaleY(0);
-      transform-origin: bottom center;
-      border-radius: 10px;
+      width: 300px;
+      height: 300px;
+      transform: translate(-50%, -50%) scale(0.1);
       z-index: 9999;
-      animation: splash 2s forwards;
-      box-shadow: 0 0 20px rgba(255, 65, 54, 0.7);
+      opacity: 0;
+      animation: scribble 1.5s forwards;
     }
 
-    @keyframes splash {
+    @keyframes scribble {
       0% {
-        transform: translate(-50%, -50%) scaleY(0);
+        transform: translate(-50%, -50%) scale(0.1);
         opacity: 0;
       }
-      50% {
+      30% {
         opacity: 1;
       }
       100% {
-        transform: translate(-50%, -50%) scaleY(1);
-        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
       }
     }
 
-    /* Contenido principal */
     #main-content {
       display: none;
       height: 100vh;
@@ -100,11 +105,10 @@
       width: 100%;
       border-radius: 20px;
       overflow: hidden;
-      background: rgba(20, 20, 30, 0.8);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
       padding: 40px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .photo {
@@ -113,7 +117,7 @@
       margin-right: 30px;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid #fff;
+      border: 3px solid #000;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       transition: transform 0.3s ease;
     }
@@ -136,10 +140,19 @@
       font-size: 2.8em;
       font-weight: 800;
       margin-bottom: 10px;
+      color: #000;
+      position: relative;
+      display: inline-block;
+    }
+
+    .name::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
       background: linear-gradient(45deg, #ff8c00, #ff4136);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
     }
 
     .tagline {
@@ -147,7 +160,7 @@
       margin-bottom: 25px;
       font-weight: normal;
       font-style: italic;
-      color: #d0d0ff;
+      color: #444;
     }
 
     .details p {
@@ -155,6 +168,7 @@
       margin: 12px 0;
       display: flex;
       align-items: center;
+      color: #000;
     }
 
     .details i {
@@ -166,6 +180,7 @@
 
     .social-links {
       display: flex;
+      flex-wrap: wrap;
       margin-top: 30px;
       gap: 15px;
     }
@@ -177,16 +192,17 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
+      background: rgba(0, 0, 0, 0.05);
+      color: #000;
       font-size: 1.5em;
       transition: all 0.3s ease;
       text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .social-links a:hover {
       background: linear-gradient(45deg, #ff4136, #ff8c00);
+      color: #fff;
       transform: translateY(-5px);
       box-shadow: 0 5px 15px rgba(255, 65, 54, 0.4);
     }
@@ -217,6 +233,12 @@
       .tagline {
         font-size: 1.2em;
       }
+      
+      .name::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+      }
     }
     
     footer {
@@ -225,38 +247,64 @@
       width: 100%;
       text-align: center;
       font-size: 0.9em;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.8);
       z-index: 20;
+    }
+
+    .ssl-warning {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #ff4136;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      z-index: 10000;
+      display: none;
     }
   </style>
 </head>
 <body>
-  <!-- Fondo de partículas dinámico -->
-  <div class="particles" id="particles"></div>
+  <!-- Advertencia SSL -->
+  <div class="ssl-warning" id="ssl-warning">
+    <i class="fas fa-exclamation-triangle"></i> ADVERTENCIA: Esta conexión no es segura
+  </div>
   
-  <!-- Chorro de pintura -->
-  <div id="paint-splash"></div>
+  <!-- Fondo de estrellas -->
+  <div class="stars" id="stars"></div>
+  
+  <!-- Rayón de esfero -->
+  <div id="ink-scribble">
+    <div style="
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, #000 0%, transparent 70%);
+      border-radius: 50%;
+    "></div>
+  </div>
 
   <!-- Contenido principal -->
   <div id="main-content">
     <div class="profile-container">
       <div class="photo">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Foto de David Arenas" />
+        <img src="foto.png" alt="Foto de David Arenas" />
       </div>
       <div class="info">
         <div class="name">David Arenas</div>
         <div class="tagline">Soluciones reales con ciencia, tecnología y corazón.</div>
         <div class="details">
-          <p><i class="fas fa-phone"></i> Teléfono: +57 3107698526</p>
+          <p><i class="fas fa-phone"></i> Teléfono: +57 310 769 8526</p>
           <p><i class="fas fa-envelope"></i> Email: davidarenasr@gmail.com</p>
           <p><i class="fas fa-map-marker-alt"></i> Ubicación: Bogotá, Colombia</p>
           <p><i class="fas fa-laptop-code"></i> Especialidad: Desarrollo Full Stack</p>
         </div>
         <div class="social-links">
-          <a href="#"><i class="fab fa-github"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="https://github.com/davidarenasr?tab=repositories" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/davidarenasr1/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://x.com/DavidArenasR1" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/davidarenasr_/" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/david.arenas.12764/" title="Facebook"><i class="fab fa-facebook"></i></a>
         </div>
       </div>
     </div>
@@ -267,58 +315,57 @@
   </footer>
 
   <script>
-    // Función para crear partículas en el fondo
-    function createParticles() {
-      const particlesContainer = document.getElementById('particles');
-      const particleCount = 50;
+    // Función para crear estrellas en el fondo
+    function createStars() {
+      const starsContainer = document.getElementById('stars');
+      const starCount = 200;
       
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
         
-        // Tamaño aleatorio entre 2px y 6px
-        const size = Math.random() * 4 + 2;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
+        // Tamaño aleatorio entre 1px y 3px
+        const size = Math.random() * 2 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
         
         // Posición aleatoria
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
         
         // Animación
-        const duration = Math.random() * 10 + 5;
-        particle.style.animation = `float ${duration}s infinite ease-in-out`;
+        const duration = Math.random() * 5 + 3;
+        star.style.setProperty('--duration', `${duration}s`);
         
-        particlesContainer.appendChild(particle);
+        starsContainer.appendChild(star);
       }
-      
-      // Agregar la animación de flotar
-      const style = document.createElement('style');
-      style.innerHTML = `
-        @keyframes float {
-          0%, 100% { transform: translate(0, 0); }
-          25% { transform: translate(${Math.random() * 40 - 20}px, ${Math.random() * 40 - 20}px); }
-          50% { transform: translate(${Math.random() * 40 - 20}px, ${Math.random() * 40 - 20}px); }
-          75% { transform: translate(${Math.random() * 40 - 20}px, ${Math.random() * 40 - 20}px); }
-        }
-      `;
-      document.head.appendChild(style);
     }
     
-    // Esperar a que termine la animación de la pintura para mostrar el contenido
+    // Verificar conexión segura
+    function checkSSL() {
+      if (window.location.protocol !== 'https:') {
+        const warning = document.getElementById('ssl-warning');
+        warning.style.display = 'block';
+        
+        // Intentar redirigir a HTTPS después de 3 segundos
+        setTimeout(() => {
+          window.location.href = `https://${window.location.host}${window.location.pathname}`;
+        }, 3000);
+      }
+    }
+    
+    // Esperar a que termine la animación del rayón para mostrar el contenido
     document.addEventListener('DOMContentLoaded', function() {
-      createParticles();
+      createStars();
+      checkSSL(); // Verificar SSL al cargar
       
       setTimeout(function() {
-        const splash = document.getElementById('paint-splash');
+        const scribble = document.getElementById('ink-scribble');
         const mainContent = document.getElementById('main-content');
-        
-        // Ocultar el chorro de pintura
-        splash.style.display = 'none';
         
         // Mostrar el contenido principal
         mainContent.classList.add('show');
-      }, 2000); // 2000ms = 2s (duración de la animación)
+      }, 1500);
     });
   </script>
 </body>
