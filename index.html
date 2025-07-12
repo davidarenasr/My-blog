@@ -1,160 +1,144 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mi Portafolio</title>
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>David Arenas – Portafolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  body {
-    background-color: #000;
-    font-family: Arial, sans-serif;
-    color: #fff;
-    overflow: hidden; /* Oculta el scroll durante la animación */
-  }
+    body {
+      background-color: #000;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
 
-  /* Estilo para la animación del chorro de pintura */
-#paint-splash {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 200px;
-  background-color: #ff4136; /* Rojo vibrante para simular pintura */
-  transform: translate(-50%, -50%) scaleY(0);
-  transform-origin: bottom center;
-  border-radius: 10px;
-  z-index: 9999;
-  animation: splash 2s forwards;
-}
+    /* Chorro de pintura */
+    #paint-splash {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 200px;
+      background-color: #ff4136;
+      transform: translate(-50%, -50%) scaleY(0);
+      transform-origin: bottom center;
+      border-radius: 10px;
+      z-index: 9999;
+      animation: splash 2s forwards;
+    }
 
-/* Animación para el chorro de pintura */
-@keyframes splash {
-  0% {
-    transform: translate(-50%, -50%) scaleY(0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scaleY(1);
-    opacity: 1;
-  }
-}
+    @keyframes splash {
+      0% {
+        transform: translate(-50%, -50%) scaleY(0);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) scaleY(1);
+        opacity: 1;
+      }
+    }
 
-/* Estilo para la sección principal, oculta al inicio */
-#main-content {
-  display: none; /* oculto inicialmente para mostrar después de la animación */
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
+    /* Contenido principal */
+    #main-content {
+      display: none;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
 
-/* Contenedor que pone en fila la foto y los datos */
-.profile-container {
-  display: flex;
-  align-items: center;
-  max-width: 1000px;
-  width: 100%;
-  background-color: transparent;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(255,255,255,0.2);
-  color: #fff;
-}
+    #main-content.show {
+      display: flex;
+      animation: fadeIn 1s ease-in-out;
+    }
 
-/* Estilo para la foto */
-.photo {
-  flex: 1;
-  max-width: 250px;
-  margin-right: 30px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid #fff;
-}
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-.photo img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+    .profile-container {
+      display: flex;
+      align-items: center;
+      max-width: 1000px;
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
 
-/* Estilo para el texto */
-.info {
-  flex: 2;
-}
+    .photo {
+      flex: 1;
+      max-width: 250px;
+      margin-right: 30px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #fff;
+    }
 
-.name {
-  font-size: 2.5em;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+    .photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
-.tagline {
-  font-size: 1.2em;
-  margin-bottom: 20px;
-  font-weight: normal;
-}
+    .info {
+      flex: 2;
+    }
 
-.details p {
-  font-size: 1em;
-  margin: 5px 0;
-}
+    .name {
+      font-size: 2.5em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
 
-/* Animación de aparición para el contenido principal */
-#main-content.show {
-  display: flex;
-  animation: fadeIn 1s ease-in-out;
-}
+    .tagline {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      font-weight: normal;
+      font-style: italic;
+    }
 
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-</style>
+    .details p {
+      font-size: 1em;
+      margin: 5px 0;
+    }
+
+    @media (max-width: 768px) {
+      .profile-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .photo {
+        margin: 0 auto 20px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Chorro de pintura -->
-<div id="paint-splash"></div>
+  <!-- Chorro de pintura -->
+  <div id="paint-splash"></div>
 
-<!-- Contenido principal oculto inicialmente -->
-<div id="main-content">
-  <div class="profile-container">
-    <div class="photo">
-      <!-- Asegúrate de poner la URL correcta o una imagen de prueba -->
-      <img src="TU_FOTO_AQUI.jpg" alt="Tu Foto" />
-    </div>
-    <div class="info">
-      <div class="name">Tu Nombre</div>
-      <div class="tagline">"Frase contundente y llamativa."</div>
-      <div class="details">
-        <p>Teléfono: +123 456 7890</p>
-        <p>Lo que hago: Desarrollador Web, Diseñador, etc.</p>
+  <!-- Contenido principal -->
+  <div id="main-content">
+    <div class="profile-container">
+      <div class="photo">
+        <!-- Reemplaza por tu foto -->
+        <img src="https://via.placeholder.com/250" alt="Foto de David Arenas" />
       </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  // Cuando termine la animación del chorro, mostrar el contenido
-  document.querySelector('#paint-splash').addEventListener('animationend', () => {
-    // Ocultar el chorro
-    document.getElementById('paint-splash').style.display = 'none';
-
-    // Mostrar el contenido principal
-    const mainContent = document.getElementById('main-content');
-    mainContent.classList.add('show');
-  });
-</script>
-
-</body>
-</html>
+      <div class="info">
+        <div class="name">David Arenas</div>
+        <div class="tagline">Soluciones reales con ciencia, tecnología y corazón.</div>
+        <div class="details">
+          <p>Teléfono: +57 300 000 0000</p>
